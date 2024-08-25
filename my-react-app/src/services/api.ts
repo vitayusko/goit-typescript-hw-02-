@@ -1,8 +1,31 @@
 import axios from "axios";
 
 // парсим данные м ансплэша шаг 1
+interface FetchImagesParams {
+  query: string;
+  perPage?: number;
+  page?: number;
+}
+interface UnsplashImage {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+    full: string;
+  };
+  alt_description: string;
+}
 
-export const fetchImages = async (query, perPage = 9, page = 1) => {
+interface UnsplashResponse {
+  results: UnsplashImage[];
+  total: number;
+  total_pages: number;
+}
+export const fetchImages = async ({
+  query,
+  perPage = 9,
+  page = 1,
+}: FetchImagesParams): Promise<UnsplashResponse> => {
   const response = await axios.get("https://api.unsplash.com/search/photos", {
     params: {
       query,

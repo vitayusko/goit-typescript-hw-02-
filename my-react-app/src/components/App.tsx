@@ -8,16 +8,28 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./ImageModal/ImageModal";
 
-const App = () => {
-  const [photos, setPhotos] = useState([]); // Масив зображень
-  const [query, setQuery] = useState(""); // Для обробки запиту в пошуковому рядку
-  const [isLoading, setIsLoading] = useState(false); // Індикатор завантаження
-  const [isError, setIsError] = useState(false); // Індикатор помилки
-  const [page, setPage] = useState(1); // Номер сторінки для підвантаження зображень
-  const [isOpen, setIsOpen] = useState(false); // Відкриття/закриття модального вікна
-  const [selectedImage, setSelectedImage] = useState(null); // Вибране зображення
 
-  const handleOpenModal = (image) => {
+
+interface Image {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+    full: string;
+  };
+  alt_description: string;
+}
+
+const App: React.FC= () =  () => {
+  const [photos, setPhotos] = useState<Image[]>([]); // Масив зображень
+  const [query, setQuery] = useState<string>(""); // Для обробки запиту в пошуковому рядку
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Індикатор завантаження
+  const [isError, setIsError] = useState<boolean>(false); // Індикатор помилки
+  const [page, setPage] = useState<number>(1); // Номер сторінки для підвантаження зображень
+  const [isOpen, setIsOpen] = useState<boolean>(false); // Відкриття/закриття модального вікна
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null); // Вибране зображення
+
+  const handleOpenModal = (image: Image) => {
     setSelectedImage(image);
     setIsOpen(true);
   };
@@ -28,7 +40,7 @@ const App = () => {
   };
 
   // Обробка пошуку при сабміті форми
-  const handleSearchSubmit = (searchQuery) => {
+  const handleSearchSubmit = (searchQuery:string) => {
     setQuery(searchQuery); // Оновлюємо запит
     setPhotos([]); // Очищуємо масив зображень перед новим пошуком
     setPage(1); // Повертаємось на першу сторінку

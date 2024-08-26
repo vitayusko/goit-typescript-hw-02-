@@ -7,20 +7,18 @@ import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./ImageModal/ImageModal";
-import { UnsplashImage } from "../services/api"; // Импортируем тип изображения
+import { Image } from "../services/api"; // Импортируем тип изображения
 
 const App: React.FC = () => {
-  const [photos, setPhotos] = useState<UnsplashImage[]>([]); // Массив изображений
+  const [photos, setPhotos] = useState<Image[]>([]); // Массив изображений
   const [query, setQuery] = useState<string>(""); // Для обработки запроса в поисковом поле
   const [isLoading, setIsLoading] = useState<boolean>(false); // Индикатор загрузки
   const [isError, setIsError] = useState<boolean>(false); // Индикатор ошибки
   const [page, setPage] = useState<number>(1); // Номер страницы для подгрузки изображений
   const [isOpen, setIsOpen] = useState<boolean>(false); // Открытие/закрытие модального окна
-  const [selectedImage, setSelectedImage] = useState<UnsplashImage | null>(
-    null
-  ); // Выбранное изображение
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null); // Выбранное изображение
 
-  const handleOpenModal = (image: UnsplashImage) => {
+  const handleOpenModal = (image: Image) => {
     setSelectedImage(image);
     setIsOpen(true);
   };

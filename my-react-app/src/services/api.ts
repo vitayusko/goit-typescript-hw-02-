@@ -6,7 +6,7 @@ interface FetchImagesParams {
   perPage?: number;
   page?: number;
 }
-export interface UnsplashImage {
+export interface Image {
   id: string;
   urls: {
     small: string;
@@ -17,7 +17,7 @@ export interface UnsplashImage {
 }
 
 interface UnsplashResponse {
-  results: UnsplashImage[];
+  results: Image[];
   total: number;
   total_pages: number;
 }

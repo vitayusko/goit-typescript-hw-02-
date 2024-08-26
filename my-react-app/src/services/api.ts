@@ -6,7 +6,7 @@ interface FetchImagesParams {
   perPage?: number;
   page?: number;
 }
-interface UnsplashImage {
+export interface UnsplashImage {
   id: string;
   urls: {
     small: string;
